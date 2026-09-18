@@ -23,5 +23,14 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    // Built by extension/build.mjs with esbuild, against the Chrome extension APIs rather
+    // than Next's DOM lib, and shipped as its own artifact. It was inside this project
+    // only because the include glob is "**/*.ts", and the three entry points each carried
+    // an @ts-nocheck to escape it -- which ESLint rightly objects to, since it silences
+    // every future type error in the file as well as today's. The boundary is real, so it
+    // is stated here once instead of denied three times.
+    "extension/**"
+  ]
 }

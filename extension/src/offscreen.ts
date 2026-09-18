@@ -1,4 +1,3 @@
-// @ts-nocheck -- This entry point is compiled by the independent extension build, not the root Next.js project.
 import { env, pipeline } from "@huggingface/transformers";
 
 declare const MEETING_ASSISTANT_URL: string;
@@ -274,7 +273,7 @@ async function stopCapture(endedByBrowser = false): Promise<void> {
   stoppingPromise = (async () => {
     const finalGeneration = captureGeneration;
     const finalRate = inputSampleRate;
-    processorNode && (processorNode.onaudioprocess = null);
+    if (processorNode) processorNode.onaudioprocess = null;
 
     const finalSamples = finalRate > 0 && bufferedSampleCount >= finalRate * MINIMUM_FINAL_CHUNK_SECONDS
       ? takeSamples(bufferedSampleCount)

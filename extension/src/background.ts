@@ -1,4 +1,3 @@
-// @ts-nocheck -- This entry point is compiled by the independent extension build, not the root Next.js project.
 export {};
 
 type CaptureStatus = "idle" | "starting" | "loading_model" | "capturing" | "stopping" | "sending" | "error";
